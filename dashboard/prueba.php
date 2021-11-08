@@ -2,11 +2,12 @@
 
 <?php
 include_once '../bd/conexion.php';
+$obj = new Conexion();
+$conexion = $obj->Conectar($obj->getServidor(), $obj->getDbname(), $obj->getUser(), $obj->getPass());
 $query = "SELECT * FROM facultades;";
 $consulta = pg_query($conexion, $query);
 $data = pg_fetch_all($consulta);
 //print_r($data);
-echo $_SESSION['id'];
 ?>
 
 
@@ -28,7 +29,7 @@ echo $_SESSION['id'];
 
                                 <div class="row mb-3">
                                     <div class="col-sm-12">
-                                        <select class="form-select form-select-lg" aria-label="Default select example" id="factCri">
+                                        <select class="form-select form-select-lg" name='factCri' aria-label="Default select example" id="factCri">
                                             <option selected>Elija facultad</option>
                                             <--! Creacion de item para el select-->
                                                 <?php foreach ($data as $dat => $array) {
@@ -40,20 +41,20 @@ echo $_SESSION['id'];
                                 <div class="row mb-3">
                                     <div class="col-sm-10">
                                         <label for="txt_nom_cri" class="form-label">Nombre del criterio</label>
-                                        <input name='nomCri' type="text" placeholder='' class="form-control" id="txt_nom_cri">
+                                        <input name='txt_nom_cri' type="text" placeholder='' class="form-control" id="txt_nom_cri">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-7">
                                         <label for="txt_tipo_cri" class="form-label">Tipo de criterio</label>
                                         <div class="">
-                                            <input name='tipoCri' type="text" placeholder='' class="form-control" id="txt_tipo_cri">
+                                            <input name='txt_tipo_cri' type="text" placeholder='' class="form-control" id="txt_tipo_cri">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="txt_nota_cri" class="form-label">Nota maxima</label>
                                         <div class="">
-                                            <input name='notaCri' type="number" class="form-control" id="txt_nota_cri">
+                                            <input name='txt_nota_cri' type="number" class="form-control" id="txt_nota_cri">
                                         </div>
                                     </div>
                                 </div>

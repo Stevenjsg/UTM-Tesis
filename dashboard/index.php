@@ -5,6 +5,8 @@
     <h1>Calificación para la Documentación</h1>
     <?php
     include_once '../bd/conexion.php';
+    $obj = new Conexion();
+    $conexion = $obj->Conectar($obj->getServidor(), $obj->getDbname(), $obj->getUser(), $obj->getPass());
     $query = "SELECT i.id_tesis, string_agg(e.nombre|| ' ' || e.apellidos, ', ') AS nombresestudiante, i.tema_nom, i.facultad, i.carrera, i.modalidad FROM informe_tesis i, estudiante e WHERE i.estudiante = e.cedula GROUP BY 1, 3,4,5,6;";
     $consulta = pg_query($conexion, $query);
 

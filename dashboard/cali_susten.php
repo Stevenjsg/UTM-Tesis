@@ -5,6 +5,8 @@
     <h1>Calificación para la Sustentación</h1>
     <?php
     include_once '../bd/conexion.php';
+    $obj = new Conexion();
+    $conexion = $obj->Conectar($obj->getServidor(), $obj->getDbname(), $obj->getUser(), $obj->getPass());
     $query = "SELECT id_tesis, cedula, (e.nombre|| ' ' || e.apellidos) AS nombresestudiante, tema_nom, facultad, carrera, modalidad FROM informe_tesis i, estudiante e WHERE i.estudiante = e.cedula";
     $consulta = pg_query($conexion, $query);
 

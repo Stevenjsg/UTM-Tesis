@@ -1,5 +1,7 @@
 <?php
 include_once 'conexion.php';
+$obj = new Conexion();
+$conexion = $obj->Conectar($obj->getServidor(), $obj->getDbname(), $obj->getUser(), $obj->getPass());
 session_start();
 
 //recepción de datos enviados mediante POST desde ajax
@@ -17,7 +19,7 @@ $cantidad = pg_num_rows($consulta);
 if ($cantidad > 0) {
     $_SESSION['s_usuario'] = $nombres;
     $_SESSION['id'] = ' ' . $ce;
-    $data = $this->$consulta->fetchAll(PDO::FETCH_ASSOC);
+    $data = pg_fetch_all($consulta, PDO::FETCH_ASSOC);
 } else {
     $_SESSION["s_usuario"] = null;
     $data = null;
