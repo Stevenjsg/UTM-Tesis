@@ -5,8 +5,8 @@ include_once '../bd/conexion.php';
 $query = "SELECT * FROM facultades;";
 $consulta = pg_query($conexion, $query);
 $data = pg_fetch_all($consulta);
-echo $_SESSION['s_usuario'];
 //print_r($data);
+echo $_SESSION['id'];
 ?>
 
 
@@ -22,6 +22,10 @@ echo $_SESSION['s_usuario'];
                         </div>
                         <div class="col-6 ">
                             <form action="" method="post" class="needs-validation" id='formCri' novalidate>
+                                <script language="JavaScript" type="text/javascript">
+                                    let cedula = '' + <?php echo $_SESSION['id']; ?>
+                                </script>
+
                                 <div class="row mb-3">
                                     <div class="col-sm-12">
                                         <select class="form-select form-select-lg" aria-label="Default select example" id="factCri">
@@ -49,7 +53,7 @@ echo $_SESSION['s_usuario'];
                                     <div class="col-sm-3">
                                         <label for="txt_nota_cri" class="form-label">Nota maxima</label>
                                         <div class="">
-                                            <input name='notaCri' type="text" class="form-control" id="txt_nota_cri">
+                                            <input name='notaCri' type="number" class="form-control" id="txt_nota_cri">
                                         </div>
                                     </div>
                                 </div>
@@ -72,6 +76,3 @@ echo $_SESSION['s_usuario'];
 </div>
 <?php require_once "vistas/parte_inferior.php" ?>
 <script language="JavaScript" type="text/javascript" src="./js/criterios.js"></script>
-<script type="text/javascript">
-    var idsesion = "<?php $_SESSION['s_usuario']; ?>";
-</script>

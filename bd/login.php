@@ -10,12 +10,13 @@ $password = (isset($_POST['password'])) ? $_POST['password'] : '';
 $query = "SELECT * FROM tribunal as t, userpass as u WHERE t.email='$usuario' AND t.cedula= u.tribunal AND u.pass = '$password';";
 $consulta = pg_query($conexion, $query);
 $dat = pg_fetch_array($consulta);
+$nombres = '' . $dat['nombre'] . ' ' . $dat['apellidos'];
+$ce = ' ' . $dat['cedula'];
 $cantidad = pg_num_rows($consulta);
 
 if ($cantidad > 0) {
-    $_SESSION['s_usuario'] = $dat['nombre'];
-    setcookie("email", $usuario);
-    setcookie("idUsuario", $idUsuario);
+    $_SESSION['s_usuario'] = $nombres;
+    $_SESSION['id'] = ' ' . $ce;
     $data = $this->$consulta->fetchAll(PDO::FETCH_ASSOC);
 } else {
     $_SESSION["s_usuario"] = null;
