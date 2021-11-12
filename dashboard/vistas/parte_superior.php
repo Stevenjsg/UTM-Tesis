@@ -80,8 +80,14 @@ if ($_SESSION["s_usuario"] == null) {
             <a class="collapse-item" href="index.php">Calificar Documentación</a>
             <a class="collapse-item" href="cali_susten.php">Calificar Sustentación</a>
             <a class="collapse-item" href="calificados.php">Editar Calificación</a>
+
           </div>
         </div>
+      <li class="nav-item active">
+        <a class="nav-link" href="prueba.php">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Configuración</span></a>
+      </li>
       </li>
 
 

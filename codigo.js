@@ -22,6 +22,8 @@ $("#formLogin").submit(function (e) {
             title: "Usuario y/o password incorrecta",
           });
         } else {
+          console.log(data);
+
           window.location.href = "dashboard/index.php";
         }
       },
