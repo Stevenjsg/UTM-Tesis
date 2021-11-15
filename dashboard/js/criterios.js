@@ -32,7 +32,11 @@ $(function getCriterio() {
       if (data.length > 0) {
         $.each(data, function (key, registro) {
           $("#listCriterio").append(
-            "<li class='list-group-item'>" + registro.nombre + "</li>"
+            "<li class='list-group-item'>" +
+              registro.nombre +
+              " - " +
+              registro.tipo +
+              "</li>"
           );
         });
       } else {
@@ -45,13 +49,11 @@ $(function getCriterio() {
 $("#FormCri").submit((e) => {
   e.preventDefault();
   const txt_nom_cri = $.trim($("#txt_nom_cri").val());
-  const txt_tipo_cri = $.trim($("#txt_tipo_cri").val());
+  const txt_tipo_cri = $.trim(
+    $("input:radio[name=txt_tipo_cri]:checked").val()
+  );
   const txt_nota_cri = $.trim($("#txt_nota_cri").val());
   const factCri = $.trim($("#FactCri").val());
-
-  // if (cedula.length == 9) {
-  //   cedula = "0" + cedula;
-  // }
 
   data = {
     func: "CriterioPost",
@@ -61,6 +63,11 @@ $("#FormCri").submit((e) => {
     txt_nota_cri,
     factCri,
   };
+
+  // if (cedula.length == 9) {
+  //   cedula = "0" + cedula;
+  // }
+
   console.log(data);
   var noti = document.getElementById("toast");
   var t = new bootstrap.Toast(noti);
@@ -70,6 +77,7 @@ $("#FormCri").submit((e) => {
     datatype: "json",
     data,
     success: function (res) {
+      console.log(res);
       data = JSON.parse(res);
       if (data["success"] == "bien") {
         t.show();

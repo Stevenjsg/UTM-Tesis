@@ -36,11 +36,21 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-7">
-                                        <label for="txt_tipo_cri" class="form-label">Tipo de criterio</label>
-                                        <div class="">
-                                            <input name='txt_tipo_cri' type="text" placeholder='' class="form-control" id="txt_tipo_cri" required>
-                                            <div class="invalid-feedback">Especifique el tipo de criterio [Documentacion | Sustentacion]</div>
+                                        <label class="form-label">Tipo de criterio</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="txt_tipo_cri" id="txt_tipo_doc" value="Documentación" required>
+                                            <label class="form-check-label" for="txt_tipo_doc">
+                                                Documentación
+                                            </label>
                                         </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="txt_tipo_cri" id="txt_tipo_sus" value="Sustentación" required>
+                                            <label class="form-check-label" for="txt_tipo_sus">
+                                                Sustentación
+                                            </label>
+                                            <div class="invalid-feedback">Seleecione uno</div>
+                                        </div>
+
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="txt_nota_cri" class="form-label">Nota maxima</label>

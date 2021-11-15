@@ -1,3 +1,14 @@
+<?php
+
+// Si han aceptado la política
+if (isset($_REQUEST['politica-cookies'])) {
+    // Calculamos la caducidad, en este caso un año
+    $caducidad = time() + (60 * 60 * 24 * 365);
+    // Crea una cookie con la caducidad
+    setcookie('politica', '1', $caducidad);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,8 +28,7 @@
 
 </head>
 
-<body>
-
+<body style="height: 100vh;">
     <div class="container-login">
         <div class="wrap-login">
             <form class="login-form validate-form" id="formLogin" action="" method="post">
@@ -43,12 +53,24 @@
             </form>
         </div>
     </div>
-
+    <div class="position-relative bottom-0" style="z-index: 10;">
+        <div class="nav">
+            <?php if (!isset($_REQUEST['politica-cookies']) && !isset($_COOKIE['politica'])) : ?>
+                <!-- Mensaje de cookies -->
+                <div class="row m-2">
+                    <div class="col-sm-3 mr-3">
+                        <h5>Cookies</h5>
+                    </div>
+                    <p>¿Aceptas nuestras cookies?</p>
+                    <a href="?politica-cookies=1">Aceptar</a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
 
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="popper/popper.min.js"></script>
-
     <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
     <script src="codigo.js"></script>
 </body>

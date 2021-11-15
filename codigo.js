@@ -23,7 +23,6 @@ $("#formLogin").submit(function (e) {
           });
         } else {
           console.log(data);
-
           window.location.href = "dashboard/index.php";
         }
       },

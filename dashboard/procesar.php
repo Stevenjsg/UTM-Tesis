@@ -41,7 +41,6 @@ function setCriterios($facultad, $nombre, $tipo, $nota, $tribunal)
             'ci_admin' => $tribunal
         );
         $res = pg_insert($conexion, 'criterio', $query);
-
         if ($res) {
             $res = array(
                 'success' => 'bien'
@@ -75,7 +74,7 @@ function getFacultades()
     $query = "SELECT * FROM facultades;";
     $consulta = pg_query($conexion, $query);
     $data = pg_fetch_all($consulta);
-    print json_encode($data);
+    print json_encode($data, JSON_PRETTY_PRINT);
 }
 
 function getCriterio()
@@ -85,5 +84,5 @@ function getCriterio()
     $query = "SELECT * FROM Criterio;";
     $consulta = pg_query($conexion, $query);
     $data = pg_fetch_all($consulta);
-    print json_encode($data);
+    print json_encode($data, JSON_PRETTY_PRINT);
 }
