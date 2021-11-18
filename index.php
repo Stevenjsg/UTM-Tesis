@@ -23,7 +23,7 @@ if (isset($_REQUEST['politica-cookies'])) {
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
-
+    <link href="dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="fuentes/iconic/css/material-design-iconic-font.min.css">
 
 </head>

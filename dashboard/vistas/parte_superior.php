@@ -28,7 +28,11 @@ if ($_SESSION["s_usuario"] == null) {
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
   <!--datables CSS básico-->
-  <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.3.7/css/autoFill.dataTables.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css" />
   <!--datables estilo bootstrap 4 CSS-->
   <link rel="stylesheet" type="text/css" href="vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
 
@@ -65,18 +69,18 @@ if ($_SESSION["s_usuario"] == null) {
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Gestión de sustentación
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fa fa-bars"></i>
           <span>Calificar</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
+            <h6 class="collapse-header">Opciones:</h6>
             <a class="collapse-item" href="index.php">Calificar Documentación</a>
             <a class="collapse-item" href="cali_susten.php">Calificar Sustentación</a>
             <a class="collapse-item" href="calificados.php">Editar Calificación</a>
@@ -85,7 +89,7 @@ if ($_SESSION["s_usuario"] == null) {
         </div>
       <li class="nav-item active">
         <a class="nav-link" href="prueba.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fa fa-cog"></i>
           <span>Configuración</span></a>
       </li>
       </li>
