@@ -1,61 +1,168 @@
 <?php
 session_start();
 require_once 'conexion.php';
+
+//insertar sustentacion
+if(isset($_POST['btnGuardar'])){
+
+$variable1 =  $_SESSION["id"];
+$cedula  = $_POST['cedula'];
+$items = ($_POST['cali_susten']);
+$item1s =($_POST['justificacion']);
+$item2s =($_POST['id_criterio']);
+
+
+
+while(true) {
+  
+   $item = current ($items);
+   $item1 = current ($item1s);
+   $item2 = current ($item2s);
+  
+
+   $cali=(( $item !== false) ? $item : ", &nbsp;");
+   $jus = (( $item1 !== false) ? $item1 : ", &nbsp;");
+   $ced=(($variable1 !==false ) ? $variable1 : ", &nbsp;");
+   $cedes=(($cedula !==false ) ? $cedula : ", &nbsp;");
+   $id_cri=(($item2 !==false ) ? $item2 : ", &nbsp;");
+ 
+   $valores="('".$ced."','".$cedes."','".$id_cri."','".$cali."','".$jus."'),";
+   
+
+   $valoresQ= substr($valores, 0, -1);
+  
 $obj = new Conexion();
 $conexion = $obj->Conectar($obj->getServidor(), $obj->getDbname(), $obj->getUser(), $obj->getPass());
+$query = "INSERT INTO notas_criterios(ci_tribunal, ci_estudiante, id_criterio, nota,justificacion) VALUES $valoresQ";	
+$consulta = pg_query($conexion, $query);
 
-//insertar 
-if (isset($_POST['btnGuardar'])) {
-  $variable1 =  $_SESSION["s_usuario"];
-  $consulta1 = "SELECT  cedula FROM usuarios WHERE usuario='$variable1'";
-  $resultado1 = $conexion->prepare($consulta1);
-  $resultado1->execute();
-  $data = $resultado1->fetchAll(PDO::FETCH_ASSOC);
-  foreach ($data as $dat) {
-    $dat['cedula'];
-    $variable2 = $dat['cedula'];
+$variable1 =  $_SESSION["id"];
+$cedula  = $_POST['cedula'];
 
-    $cedula = $_POST['cedula'];
-    $cali_doc = $_POST['cali_doc'];
-    $cali_susten = $_POST['cali_susten'];
-    $promedio = ($cali_doc + $cali_susten) / 2;
+    $item =next ($items);
+    $item1= next($item1s);
+    $item2=  next ($item2s);
 
-    $consulta = "INSERT INTO tesistas(cedula_docente, cedula_estudiante, cali_doc, cali_susten,promedio) VALUES('$variable2','$cedula','$cali_doc', '$cali_susten', '$promedio') ";
+if($item==false && $item1 == false && $item2 ==false)break;
 
-    $consultafinal = "UPDATE  grupo set calificacion= (SELECT Avg(promedio) FROM tesistas where cedula_estudiante='$cedula') where cedula='$cedula'";
-    $resultado = $conexion->prepare($consulta);
-    $resultado1 = $conexion->prepare($consultafinal);
-    $resultado->execute();
-    $resultado1->execute();
+}
+   
+$query1 = "SELECT sum (nc.nota) AS sumatoria FROM notas_criterios nc, criterio cr WHERE cr.id_criterio=nc.id_criterio AND nc.ci_estudiante = '$cedula' AND nc.ci_tribunal='$variable1' AND cr.tipo='Sustentación';";	 
+$consulta1 = pg_query($conexion, $query1); 
+echo $query1;
+
+
+while ($dat = pg_fetch_array($consulta1)) { 
+$sumatoria_sustentacion = $dat['sumatoria'];
+echo $sumatoria_sustentacion ;
+
+}
+$query2 = "SELECT sum (nc.nota) AS sumatoria FROM notas_criterios nc, criterio cr WHERE cr.id_criterio=nc.id_criterio AND nc.ci_estudiante = '$cedula' AND nc.ci_tribunal='$variable1' AND cr.tipo='Documentación';";	 
+$consulta2 = pg_query($conexion, $query2); 
+ echo $query2; 
+
+while ($dat = pg_fetch_array($consulta2)) { 
+
+$sumatoria_documentacion = $dat['sumatoria'];
+echo $sumatoria_documentacion ;
+
+}
+
+$promedio= ($sumatoria_documentacion+$sumatoria_sustentacion)/2;
+$obj = new Conexion();
+$conexion = $obj->Conectar($obj->getServidor(), $obj->getDbname(), $obj->getUser(), $obj->getPass());
+$query3 = "INSERT INTO notas VALUES (".$sumatoria_documentacion.",".$sumatoria_sustentacion.",".$promedio.",'".$variable1."','".$cedula."')";	 
+$consulta3 = pg_query($conexion, $query3); 
+ echo $query3;
+
+ 
+$query4 = "SELECT AVG (promedio) AS promedio FROM notas WHERE ci_estudiante='".$cedula."';";	 
+$consulta4 = pg_query($conexion, $query4); 
+
+
+while ($dat = pg_fetch_array($consulta4)) { 
+  $promediofinal = $dat['promedio'];
+  echo $promediofinal;
+  
   }
-}
+  $obj = new Conexion();
+  $conexion = $obj->Conectar($obj->getServidor(), $obj->getDbname(), $obj->getUser(), $obj->getPass());
+  $query5 = "UPDATE informe_tesis SET promedio_final=$promediofinal WHERE estudiante='".$cedula."';";	 
+  $consulta5 = pg_query($conexion, $query5); 
+  echo $query5;
 
-//modificar 
-if (isset($_POST['btnGuardar1'])) {
-
-  $cedula_estudiante = $_POST['cedula_estudiante'];
-  $cedula_docente = $_POST['cedula_docente'];
-  $cali_doc = $_POST['cali_doc'];
-  $cali_susten = $_POST['cali_susten'];
-  $promedio = ($cali_doc + $cali_susten) / 2;
-
-  $consulta1 = "UPDATE tesistas SET cali_doc='$cali_doc', cali_susten='$cali_susten', promedio='$promedio' WHERE cedula_docente='$cedula_docente' AND cedula_estudiante='$cedula_estudiante'";
-
-  $consultafinal = "UPDATE  grupo set calificacion= (SELECT Avg(promedio) FROM tesistas where cedula_estudiante='$cedula_estudiante') where cedula='$cedula_estudiante'";
-  $resultado = $conexion->prepare($consulta1);
-  $resultado1 = $conexion->prepare($consultafinal);
-  $resultado->execute();
-  $resultado1->execute();
+ 
 }
 
 
+ //insertar Documentacion 
+if(isset($_POST['btnGuardar1'])){
+  $variable1 =  $_SESSION["id"];
+  $items = ($_POST['cali_doc']);
+  $item1s =($_POST['justificacion']);
+  $item2s =($_POST['id_criterio']);
+  $id_tesis = ($_POST['id_tesis']);
 
-$var =  $_SESSION["s_usuario"];
-$con = "SELECT  nombres FROM usuarios WHERE usuario='$var'";
-$resul = $conexion->prepare($con);
-$resul->execute();
-$dato = $resul->fetchAll(PDO::FETCH_ASSOC);
-foreach ($dato as $da) {
-  $da['nombres'];
-  $variab = $da['nombres'];
+  $obj = new Conexion();
+  $conexion = $obj->Conectar($obj->getServidor(), $obj->getDbname(), $obj->getUser(), $obj->getPass());
+  $query1 = "SELECT estudiante FROM informe_tesis WHERE id_tesis = $id_tesis";	
+  $consulta1 = pg_query($conexion, $query1); 
+    $cedula = array();
+    $cont =0;
+    while ($dat = pg_fetch_array($consulta1)) {
+      $cedula[$cont] = $dat['estudiante'];
+      $cont++;
+
+foreach ($cedula as $valor) {
+  echo $valor;
+  }
+  while(true) {
+    
+     $item = current ($items);
+     $item1 = current ($item1s);
+     $item2 = current ($item2s);
+   
+    
+     $cali=(( $item !== false) ? $item : ", &nbsp;");
+     $jus = (( $item1 !== false) ? $item1 : ", &nbsp;");
+     $ced=(($variable1 !==false ) ? $variable1 : ", &nbsp;");
+     $cedes=(($valor !==false ) ? $valor : ", &nbsp;");
+     $id_cri=(($item2 !==false ) ? $item2 : ", &nbsp;");
+   
+     $valores="('".$ced."','".$cedes."','".$id_cri."','".$cali."','".$jus."'),";
+     
+  
+     $valoresQ= substr($valores, 0, -1);
+    
+   
+  $query = "INSERT INTO notas_criterios(ci_tribunal, ci_estudiante, id_criterio, nota,justificacion) VALUES $valoresQ";	
+  $consulta = pg_query($conexion, $query);  
+  
+
+      $item =next ($items);
+      $item1= next($item1s);
+      $item2=  next ($item2s);
+     
+  
+  if($item==false && $item1 == false && $item2 ==false)break;
+  
+  }
+  $variable1 =  $_SESSION["id"];
+  $items = ($_POST['cali_doc']);
+  $item1s =($_POST['justificacion']);
+  $item2s =($_POST['id_criterio']);
+  $id_tesis = ($_POST['id_tesis']);
+  }
+
+  }
+
+ //modificar 
+  if (isset($_POST['btnGuardar1'])){
+    
+    
 }
+
+
+
+
+

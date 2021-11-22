@@ -1,14 +1,13 @@
 <?php
 session_start();
 
-if ($_SESSION["s_usuario"] == null) {
-  header("Location: ../index.php");
-}
+
+
 
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
 
@@ -28,11 +27,7 @@ if ($_SESSION["s_usuario"] == null) {
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
   <!--datables CSS básico-->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.3.7/css/autoFill.dataTables.css" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables.min.css" />
   <!--datables estilo bootstrap 4 CSS-->
   <link rel="stylesheet" type="text/css" href="vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
 
@@ -61,44 +56,42 @@ if ($_SESSION["s_usuario"] == null) {
       <li class="nav-item active">
         <a class="nav-link" href="inicio.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Calificación</span></a>
+          <span>Inicio</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Gestión de sustentación
-      </div>
-
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fa fa-bars"></i>
+          <i class="fas fa-fw fa-cog"></i>
           <span>Calificar</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Opciones:</h6>
+            <h6 class="collapse-header">Custom Components:</h6>
             <a class="collapse-item" href="index.php">Calificar Documentación</a>
             <a class="collapse-item" href="cali_susten.php">Calificar Sustentación</a>
-            <a class="collapse-item" href="calificados.php">Editar Calificación</a>
-
           </div>
         </div>
-      <li class="nav-item active">
+      </li>
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- <li class="nav-item active">
         <a class="nav-link" href="prueba.php">
           <i class="fa fa-cog"></i>
-          <span>Configuración</span></a>
-      </li>
-      </li>
+          <span>Configurar</span></a>
+      </li> -->
 
 
 
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -149,7 +142,7 @@ if ($_SESSION["s_usuario"] == null) {
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="idSesion"><?php echo $_SESSION['s_usuario']; ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["s_usuario"]; ?></span>
                 <!--                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">-->
                 <img class="img-profile rounded-circle" src="img/user.png">
               </a>
