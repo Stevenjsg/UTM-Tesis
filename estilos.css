@@ -1,54 +1,54 @@
 @font-face {
   font-family: Poppins-Regular;
-  src: url('fuentes/poppins/Poppins-Regular.ttf'); 
+  src: url("fuentes/poppins/Poppins-Regular.ttf");
 }
 
 @font-face {
   font-family: Poppins-Medium;
-  src: url('fuentes/poppins/Poppins-Medium.ttf'); 
+  src: url("fuentes/poppins/Poppins-Medium.ttf");
 }
 
 @font-face {
   font-family: Poppins-Bold;
-  src: url('fuentes/poppins/Poppins-Bold.ttf'); 
+  src: url("fuentes/poppins/Poppins-Bold.ttf");
 }
 
 @font-face {
   font-family: Poppins-SemiBold;
-  src: url('fuentes/poppins/Poppins-SemiBold.ttf'); 
+  src: url("fuentes/poppins/Poppins-SemiBold.ttf");
 }
 
-*{
-	margin: 0px; 
-	padding: 0px; 
-	box-sizing: border-box;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
-body, html {
-	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+body,
+html {
+  height: 100%;
+  font-family: Poppins-Regular, sans-serif;
 }
-
 
 input {
-	outline: none;
-	border: none;
+  outline: none;
+  border: none;
 }
 
 button {
-	outline: none !important;
-	border: none;
-	background: transparent;
+  outline: none !important;
+  border: none;
+  background: transparent;
 }
 
 button:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 /*-- contenedor del Login--*/
 
 .container-login {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-flex;
   display: flex;
@@ -56,8 +56,8 @@ button:hover {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: -webkit-linear-gradient(to right, #00dbde, #08DC73);
-  background: linear-gradient(to right, #00dbde, #08DC73);
+  background: -webkit-linear-gradient(to right, #00dbde, #08dc73);
+  background: linear-gradient(to right, #00dbde, #08dc73);
 }
 
 .wrap-login {
@@ -67,9 +67,8 @@ button:hover {
   overflow: hidden;
   padding: 77px 55px 53px 55px;
   -webkit-box-shadow: 25px 40px 28px 0px rgba(0, 0, 0, 0.38);
- /* box-shadow: eje-x | eje-y | blur-radius | color */
+  /* box-shadow: eje-x | eje-y | blur-radius | color */
 }
-
 
 /*----Formulario de user y password----*/
 
@@ -85,7 +84,6 @@ button:hover {
   line-height: 1.5;
   text-align: center;
 }
-
 
 /*------------------------------------------------------------------
 [ Input ]*/
@@ -110,7 +108,7 @@ button:hover {
   padding: 0 5px;
 }
 
-/*---------------------------------------------*/ 
+/*---------------------------------------------*/
 .focus-efecto {
   position: absolute;
   display: block;
@@ -136,10 +134,10 @@ button:hover {
   transition: all 0.4s;
 
   background: #6a7dfe;
-  background: -webkit-linear-gradient(left, #21d4fd, #08DC73);
-  background: -o-linear-gradient(left, #21d4fd,#08DC73);
-  background: -moz-linear-gradient(left, #21d4fd, #08DC73);
-  background: linear-gradient(left, #21d4fd, #08DC73);
+  background: -webkit-linear-gradient(left, #21d4fd, #08dc73);
+  background: -o-linear-gradient(left, #21d4fd, #08dc73);
+  background: -moz-linear-gradient(left, #21d4fd, #08dc73);
+  background: linear-gradient(left, #21d4fd, #08dc73);
 }
 
 .focus-efecto::after {
@@ -180,7 +178,6 @@ button:hover {
 
 /*---------------------------------------------*/
 
-
 /*------------------------------------------------------------------
 [ Button ]*/
 .container-login-form-btn {
@@ -210,10 +207,16 @@ button:hover {
   width: 300%;
   height: 100%;
   background: #a64bf4;
-  background: -webkit-linear-gradient(right, #21d4fd, #08DC73, #21d4fd, #08DC73);
-  background: -o-linear-gradient(right, #21d4fd, #08DC73, #21d4fd, #08DC73);
-  background: -moz-linear-gradient(right, #21d4fd, #08DC73, #21d4fd, #08DC73);
-  background: linear-gradient(right, #21d4fd, #08DC73, #21d4fd, #08DC73);
+  background: -webkit-linear-gradient(
+    right,
+    #21d4fd,
+    #08dc73,
+    #21d4fd,
+    #08dc73
+  );
+  background: -o-linear-gradient(right, #21d4fd, #08dc73, #21d4fd, #08dc73);
+  background: -moz-linear-gradient(right, #21d4fd, #08dc73, #21d4fd, #08dc73);
+  background: linear-gradient(right, #21d4fd, #08dc73, #21d4fd, #08dc73);
   top: 0;
   left: -100%;
 
@@ -245,7 +248,6 @@ button:hover {
 .wrap-login-form-btn:hover .login-form-bgbtn {
   left: 0;
 }
-
 
 /*--- Para dispositivos small responsive ---*/
 
