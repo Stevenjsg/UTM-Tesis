@@ -8,7 +8,7 @@
                 <div class="container">
                     <div class="row mt-5">
                         <div class="col-12 h2 pb-3">
-                            Configuración de criterios
+                            Configuración de criterios de calificacion del proyecto final
                         </div>
                         <div class="col-6 ">
                             <form action="" method="post" class="needs-validation" id='FormCri' novalidate>
@@ -175,11 +175,11 @@
 
 <?php require_once "vistas/parte_inferior.php" ?>
 <script language="JavaScript" type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-<script>
+<!-- <script>
     $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();
     });
-</script>
+</script> -->
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="./js/criterios.js"></script>
 <script language="JavaScript" type="text/javascript" src="./js/validation.js"></script>

@@ -27,6 +27,7 @@ function getFacultades() {
   });
 }
 
+//tabla de criterios
 $(function getCriterio() {
   const cedula = $.trim(ced);
   $.ajax({
@@ -50,7 +51,6 @@ $(function getCriterio() {
             extend: "selected",
             text: "Editar",
             action: () => {
-              console.log(table.rows({ selected: true }).data()[0].nombre);
               $(".modal-header").css("background-color", "#4e73df");
               $(".modal-header").css("color", "white");
               $(".modal-title").text("Actualizar criterio");

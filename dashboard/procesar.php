@@ -22,9 +22,9 @@ switch ($func) {
     case 'updateCrit':
         $data = array(
             'id_criterio' => (isset($_POST['uidcri'])) ? $_POST['uidcri'] : '',
-            'nombre' => (isset($_POST['unom_cri'])) ? $_POST['unom_cri'] : '',
-            'nota' => (isset($_POST['unota_cri'])) ? $_POST['unota_cri'] : '',
-            'tipo' => (isset($_POST['utipo_cri'])) ? $_POST['utipo_cri'] : '',
+            'nombre' => (isset($_POST['unom_cri'])) ? $_POST['unom_cri'] : null,
+            'nota' => (isset($_POST['unota_cri'])) ? $_POST['unota_cri'] : null,
+            'tipo' => (isset($_POST['utipo_cri'])) ? $_POST['utipo_cri'] : null,
             'idfacultad' => (isset($_POST['ufactCri'])) ? $_POST['ufactCri'] : '',
             'ci_admin' => (isset($_POST['ucedula'])) ? $_POST['ucedula'] : ''
         );
@@ -121,8 +121,7 @@ function updateCrit($data, $id)
     $obj = new Conexion();
     $conexion = $obj->Conectar($obj->getServidor(), $obj->getDbname(), $obj->getUser(), $obj->getPass());
     $consulta = pg_update($conexion, 'criterio', $data, array('id_criterio' => $id));
-    $data = pg_fetch_all($consulta);
-    print json_encode($data, JSON_PRETTY_PRINT);
+    print json_encode($consulta, JSON_PRETTY_PRINT);
 }
 function deleteCriterio($id)
 {
